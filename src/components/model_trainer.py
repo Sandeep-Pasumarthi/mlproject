@@ -21,10 +21,46 @@ class ModelTrainerConfig:
 
 
 class ModelTrainer:
+    """
+    ModelTrainer class is responsible for training and saving the best performing model.
+
+    Args:
+        config (ModelTrainerConfig): An instance of ModelTrainerConfig class that holds the path to save the trained model.
+
+    Attributes:
+        config (ModelTrainerConfig): An instance of ModelTrainerConfig class that holds the path to save the trained model.
+
+    Methods:
+        model_training(self, train, test): This method is responsible for training and evaluating all the models and saving the best performing model.
+    """
     def __init__(self, config: ModelTrainerConfig):
+        """
+        Initializes the ModelTrainer class with the provided ModelTrainerConfig instance.
+
+        Args:
+            config (ModelTrainerConfig): An instance of ModelTrainerConfig class that holds the path to save the trained model.
+
+        Attributes:
+            config (ModelTrainerConfig): An instance of ModelTrainerConfig class that holds the path to save the trained model.
+        """
         self.config = config
     
     def model_training(self, train, test):
+        """
+        This method is responsible for training and evaluating all the models and saving the best performing model.
+
+        Args:
+            train (array-like): The training data.
+            test (array-like): The test data.
+
+        Returns:
+            None
+
+        Raises:
+            CustomException: If no model is upto the mark.
+
+        The method first acquires the training and test data, then trains and evaluates all the models. It then saves the best performing model to the specified path. If no model is upto the mark, it raises a CustomException.
+        """
         try:
             logging.info("Train and Test aquiring")
             train_X, train_y, test_X, test_y = train[:, :-1], train[:, -1], test[:, :-1], test[:, -1]
