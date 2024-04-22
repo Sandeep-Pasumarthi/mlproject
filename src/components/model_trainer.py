@@ -89,5 +89,6 @@ class ModelTrainer:
                 raise CustomException("No model is upto the mark", sys)
             
             save_object(self.config.model_path, best_model)
+            return best_model, best_model_name, best_model_score
         except Exception as e:
             raise CustomException(str(e), sys)

@@ -68,7 +68,7 @@ class DataTransformation:
             numerical_columns = ["writing_score", "reading_score"]
             categorical_columns = [
                 "gender",
-                "race_ethenicity",
+                "race_ethnicity",
                 "parental_level_of_education",
                 "lunch",
                 "test_preparation_course"
@@ -77,7 +77,7 @@ class DataTransformation:
             numeric_transformer = Pipeline(
                 steps=[
                     ("imputer", SimpleImputer(strategy="median")),
-                    ("scaler", StandardScaler())
+                    ("scaler", StandardScaler(with_mean=False))
                 ]
             )
             logging.info("Numerical transformer created")
@@ -85,8 +85,8 @@ class DataTransformation:
             categorical_transformer = Pipeline(
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
-                    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-                    ("scaler", StandardScaler())
+                    ("onehot", OneHotEncoder()),
+                    ("scaler", StandardScaler(with_mean=False))
                 ]
             )
             logging.info("Categorical transformer created")
