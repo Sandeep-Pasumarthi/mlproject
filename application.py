@@ -2,7 +2,8 @@ from flask import Flask, request, render_template
 from src.pipeline.predict import CustomData, PredictPipeline
 
 
-app = Flask(__name__)
+application = Flask(__name__)
+app =application
 
 @app.route('/')
 def home():
